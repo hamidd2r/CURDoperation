@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import {  NavLink, useNavigate } from 'react-router-dom'
 import imgpic from '../components/image/logo.jpeg'
 const Navbar = () => {
   const auth = localStorage.getItem('user' )
   const navigate = useNavigate()
+
   const logout = ()=>{
    localStorage.clear()
    navigate('/signup')
@@ -28,9 +29,9 @@ const Navbar = () => {
           <NavLink className="nav-link active" aria-current="page" to="/add">Add Product</NavLink>
         </li>
 
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <NavLink className="nav-link active" aria-current="page" to="/update">Update Product</NavLink>
-        </li>
+        </li> */}
 
         <li className="nav-item">
           <NavLink className="nav-link active" aria-current="page" to="/profile">Profile</NavLink>
@@ -38,8 +39,9 @@ const Navbar = () => {
         
 
         
-        <li className="nav-item">
-          <NavLink onClick={logout} className="nav-link active" aria-current="page" to="/signup">Logout ({JSON.parse(auth).name})</NavLink>
+        <li className="nav-item">                      
+                                                                                                {/* //({JSON.parse(auth).name}) */}
+          <NavLink onClick={logout} className="nav-link active" aria-current="page" to="/signup">Logout</NavLink>
         </li>
        
         </ul>
@@ -49,14 +51,14 @@ const Navbar = () => {
           <NavLink className="nav-link active" aria-current="page" to="/signup">Signup</NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link active" aria-current="page" to="/login">Login</NavLink>
+          <NavLink className="nav-link active" aria-current="page" to="/signup">Login</NavLink>
         </li>
         </ul>
     }
 
 
     </div>
-  </div>
+  </div>  
 </nav>   
      </header>
     </>

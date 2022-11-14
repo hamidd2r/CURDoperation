@@ -61,7 +61,7 @@ const ProductList = () => {
    
   return (
     <>
-     <h1>product list</h1>
+     <h1 className='lips'>product list</h1>
      <div className='product_list'>
      <input type="text" name="" id="box" placeholder='search product' onChange={searchHandle} />
      <ul >

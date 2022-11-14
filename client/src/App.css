@@ -175,7 +175,10 @@ font-family: 'Courier New', Courier, monospace;
 
 .product_list {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 20px;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+  
+   /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
 }
 
 .product_list ul li {
@@ -202,4 +205,11 @@ padding-left: 20px;
 border-radius: 20px;
 
 
+}
+
+.lips {
+  text-align: center;
+  color: #850c62;
+  font-family: 'Courier New', Courier, monospace;
+  margin-top: 10px;
 }

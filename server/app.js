@@ -6,6 +6,7 @@ require('./db/conn')
 const  User = require('./db/User')
 const Product = require('./db/Product')
 const Jwt = require('jsonwebtoken')
+const Profile = require('./db/profile')
 const jwtKey = 'e-comm'
 const app = express();
 
@@ -15,6 +16,17 @@ app.use(cors())
 //register api
 app.post('/register' , async(req , res)=>{
    const user = new User (req.body)
+
+   User.findOne({
+    email: req.body.email,
+  }).exec((error, user) => {
+    if (user)
+      return res.status(400).json({
+        message: "user already registered",
+      });
+
+    })  
+
    const result = await user.save();
     Jwt.sign({result}, jwtKey, {expiresIn:"2h"}, (err , token)=>{
             if(err) {
@@ -136,6 +148,15 @@ function verifyToken(req , res , next){
 }
 
 
+
+app.post('/profile' ,verifyToken, async(req,res)=>{
+    const profile = new Profile(req.body)
+    let result = await profile.save()
+    res.send(result)
+})
+
+
+
 app.listen(5000 , (req,res) =>{
     console.log(`server is running port 5000 `)
-})
+})     

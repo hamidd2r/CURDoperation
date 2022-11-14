@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const AddProduct = () => {
   const [name ,setName] = useState("")
@@ -6,8 +7,10 @@ const AddProduct = () => {
   const [category ,setCategory] = useState("")
   const [company ,setCompany] = useState("")
   const [error ,setErrors] = useState(false)
-
+  const navigate = useNavigate()
+   
   const addProduct = async ()=>{
+    navigate('/')
     console.warn(!name);
     if(!name,!price,!category,!company){
       setErrors(true)
@@ -28,6 +31,7 @@ const AddProduct = () => {
 
     result = await result.json()
     console.warn(result)
+    navigate('/')
 
   }
   return (
@@ -86,7 +90,7 @@ const AddProduct = () => {
 
 
             <div>
-              <button className="submit" onClick={addProduct}>
+              <button className="submit"  onClick={addProduct}>
                 Add Product
               </button>
             </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {useNavigate, useParams} from 'react-router-dom';
+import {NavLink, useNavigate, useParams} from 'react-router-dom';
 
 const UpdateProduct = () => {
   const [name ,setName] = useState("")
@@ -7,14 +7,16 @@ const UpdateProduct = () => {
   const [category ,setCategory] = useState("")
   const [company ,setCompany] = useState("")
   const params = useParams()
-  const navigate = useNavigate()
+  const navigate  = useNavigate();
 
 
-useEffect(()=>{
-getProductDetails()
-},[])
+  useEffect(() => {
+  getProductDetails();
+ // eslint-disable-next-line
+ }, []);
 
 const getProductDetails = async()=>{
+ 
   console.warn(params)
   let result = await fetch(`http://localhost:5000/product/${params.id}`, {
     headers:{
@@ -26,9 +28,11 @@ const getProductDetails = async()=>{
  setPrice(result.price)
  setCategory(result.category)
  setCompany(result.company)
+ 
 }
 
-  const updateProduct = async ()=>{
+  const updateProduct1 = async ()=>{
+    navigate('/')
     console.warn(name , price , category , company);
     let result = fetch(`http://localhost:5000/product/${params.id}` ,{
       method:'PUT' , 
@@ -37,14 +41,16 @@ const getProductDetails = async()=>{
       'Content-Type' :'application/json',
       authorization: ` bearer ${JSON.parse(localStorage.getItem('token'))}`
      }
+    
     })
 
      result = await (await result).json()
      console.warn(result)
-     navigate('/')
+    
     
 
   }
+ 
   return (
     <>
   <div id="container">
@@ -97,7 +103,7 @@ const getProductDetails = async()=>{
 
 
             <div>
-              <button className="submit" onClick={updateProduct}>
+              <button  className="submit" onClick={updateProduct1}>
                Update Product
               </button>
             </div>
@@ -106,6 +112,8 @@ const getProductDetails = async()=>{
       </div>
     </>
   )
+  // navigate('/')
+
 }
 
 export default UpdateProduct

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const Signup = () => {
     const [name , setName] = useState("")
@@ -12,8 +12,10 @@ const Signup = () => {
       const auth = localStorage.getItem('user');
       if(auth)
       {
-        navigate('/')
+        navigate('/login')
+        // <NavLink to='/'></NavLink>
       }
+
     })
 
     const collectData = async()=>{
